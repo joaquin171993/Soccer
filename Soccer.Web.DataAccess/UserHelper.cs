@@ -114,8 +114,8 @@ namespace Soccer.Web.DataAccess
             /*en linq todo se mapea internamente como un consulta de base de datos, por eso no se hace un ordentamiento de FullName (que es de lectura), porque esa
             columna no existe en la tabla Users, debe hacerse con las columnas existentes*/
             return await this.userManager.Users
-                .OrderBy(u => u.Nombre)
-                .ThenBy(u => u.Apellidos) /*ordena primero por nombre y luego por apellido, por ejm si hay Juan Mora y Juan Morales, ordenad primero a Juan Mora*/
+                .OrderBy(u => u.FirstName)
+                .ThenBy(u => u.LastName) /*ordena primero por nombre y luego por apellido, por ejm si hay Juan Mora y Juan Morales, ordenad primero a Juan Mora*/
                 .ToListAsync();
         }
 
