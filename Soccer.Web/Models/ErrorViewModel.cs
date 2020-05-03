@@ -1,5 +1,3 @@
-using System;
-
 namespace Soccer.Web.Models
 {
     public class ErrorViewModel
