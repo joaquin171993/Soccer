@@ -18,5 +18,11 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Soccer.Web.DataAccess\Soccer.Web.DataAccess.csproj" />
+    <ProjectReference Include="..\Soccer.Web.Models\Soccer.Web.Models.csproj" />
+    <ProjectReference Include="..\Soccer.Web.Utilities\Soccer.Web.Utilities.csproj" />
+  </ItemGroup>
+
 
 </Project>
