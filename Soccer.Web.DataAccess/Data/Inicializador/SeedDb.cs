@@ -590,8 +590,7 @@ namespace Soccer.Web.DataAccess.Data.Inicializador
 
         private async Task AddTeamAsync(string name)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot\\images\\Teams", $"{name}.jpg");
-            await dbContext.Teams.AddAsync(new TeamEntity { Name = name, LogoPath = path });
+            await dbContext.Teams.AddAsync(new TeamEntity { Name = name, LogoPath = $"~/images/Teams/{name}.jpg" });
         }
     }
 }

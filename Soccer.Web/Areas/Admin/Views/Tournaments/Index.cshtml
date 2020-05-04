@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col-12">
+            <h2 class="text-primary text-bold"> Torneos </h2>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-12 text-left">
+            <a asp-area="Admin" asp-controller="Tournaments" asp-action="Create" class="btn btn-primary"> <i class="fas fa-plus"></i> Nuevo Torneo </a>
+        </div>
+    </div>
+
+    <table id="tblTournaments" class="table table-hover table-bordered table-responsive table-striped mt-5" style="width:100%;">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Logo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+@section Scripts{
+
+    <script src="~/js/tournaments.js"></script>
+
+}
+
+
+

@@ -7,6 +7,7 @@ namespace Soccer.Web.DataAccess.Data.Repository
     {
         IUserHelper Usuario { get; }
         ITeamRepository Team { get; }
+        ITournamentRepository Tournament { get; }
         IImageHelper Image { get; }
         IConverterHelper Converter { get; }
 

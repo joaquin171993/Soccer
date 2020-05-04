@@ -16,6 +16,7 @@ namespace Soccer.Web.DataAccess
 
         public IUserHelper Usuario { get; private set; }
         public ITeamRepository Team { get; private set; }
+        public ITournamentRepository Tournament { get; private set; }
         public IImageHelper Image { get; private set; }
         public IConverterHelper Converter { get; private set; }
 
@@ -29,6 +30,7 @@ namespace Soccer.Web.DataAccess
 
             Usuario = new UserHelper(this.userManager, this.signInManager, this.roleManager);
             Team = new TeamRepository(dbContext);
+            Tournament = new TournamentRepository(dbContext);
             Image = new ImageHelper();
             Converter = new ConverterHelper();
         }

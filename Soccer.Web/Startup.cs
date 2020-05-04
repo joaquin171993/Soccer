@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Soccer.Web.DataAccess;
 using Soccer.Web.DataAccess.Data;
+using Soccer.Web.DataAccess.Data.Inicializador;
 using Soccer.Web.DataAccess.Data.Repository;
 using Soccer.Web.Models.Entities;
 
@@ -66,7 +67,7 @@ namespace Soccer.Web
                 });
 
             services.AddScoped<IContenedorTrabajo, ContenedorTrabajo>();  /*Inyector de dependencias*/
-
+            services.AddTransient<SeedDb>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
