@@ -6,5 +6,7 @@ namespace Soccer.Web.DataAccess.Data.Repository
     public interface ITeamRepository : IRepository<TeamEntity>
     {
         IEnumerable<TeamEntity> GetTeams();
+
+        void Update(TeamEntity teamEntity);
     }
 }

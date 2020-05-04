@@ -19,5 +19,17 @@ namespace Soccer.Web.DataAccess
         {
             return dbContext.Teams.ToList();
         }
+
+        public void Update(TeamEntity teamEntity)
+        {
+            if (teamEntity != null)
+            {
+                var objDesdeBd = dbContext.Teams.FirstOrDefault(a => a.Id == teamEntity.Id);
+
+                objDesdeBd.Name = teamEntity.Name;
+                objDesdeBd.LogoPath = teamEntity.LogoPath;
+
+            }
+        }
     }
 }

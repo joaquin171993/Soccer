@@ -1,26 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Soccer.Web.DataAccess.Data.Repository;
+using Microsoft.Extensions.Logging;
 using Soccer.Web.Models;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace Soccer.Web.Controllers
 {
     [Area("Cliente")]
     public class HomeController : Controller
     {
-        private readonly IContenedorTrabajo contenedorTrabajo;
+        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(IContenedorTrabajo contenedorTrabajo)
+        public HomeController(ILogger<HomeController> logger)
         {
-            this.contenedorTrabajo = contenedorTrabajo;
+            _logger = logger;
         }
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
-
-            var list = contenedorTrabajo.Team.GetTeams();
-
             return View();
         }
 
