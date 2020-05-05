@@ -10,7 +10,7 @@ namespace Soccer.Web.DataAccess.Data.Repository
         ITournamentRepository Tournament { get; }
         IImageHelper Image { get; }
         IConverterHelper Converter { get; }
-
+        ICombosHelper Combos { get; }
         void Save();
     }
 }

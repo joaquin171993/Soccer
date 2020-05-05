@@ -19,6 +19,7 @@ namespace Soccer.Web.DataAccess
         public ITournamentRepository Tournament { get; private set; }
         public IImageHelper Image { get; private set; }
         public IConverterHelper Converter { get; private set; }
+        public ICombosHelper Combos { get; private set; }
 
         public ContenedorTrabajo(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager,
                              SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
@@ -31,8 +32,9 @@ namespace Soccer.Web.DataAccess
             Usuario = new UserHelper(this.userManager, this.signInManager, this.roleManager);
             Team = new TeamRepository(dbContext);
             Tournament = new TournamentRepository(dbContext);
-            Image = new ImageHelper();
-            Converter = new ConverterHelper();
+            Image = new ImageHelper();       
+            Combos = new ComboHelper(dbContext);
+            Converter = new ConverterHelper(dbContext, Combos);
         }
 
         public void Dispose()

@@ -30,6 +30,9 @@ namespace Soccer.Web.Models.Entities
         [Display(Name = "Is Closed?")]
         public bool IsClosed { get; set; }
 
+        [Display(Name = "Number Match")]
+        public int NumberMatch { get; set; }
+
         public GroupEntity Group { get; set; }
 
         public ICollection<PredictionEntity> Predictions { get; set; }

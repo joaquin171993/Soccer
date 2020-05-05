@@ -30,7 +30,7 @@ function cargarDatatable() {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                                <table class="table table-bordered">
+                                <table class="table table-hover table-bordered table-responsive table-striped mt-5" style="width:100%;"
                                     <tbody>
                                     <tr>
                                         <td scope="row">
@@ -44,7 +44,7 @@ function cargarDatatable() {
                                             </a>
                                         </td>
                                         <td>
-                                            <a href='/Admin/Activos/Tournaments/${data}' class='btn btn-info text-white' style='cursor:pointer; width:50px;'>
+                                            <a href='/Admin/Tournaments/Details/${data}' class='btn btn-info text-white' style='cursor:pointer; width:50px;'>
                                                 <i class='fas fa-info'></i> 
                                              </a> 
                                         </td>

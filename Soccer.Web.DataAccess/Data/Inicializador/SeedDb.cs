@@ -1,7 +1,6 @@
 ﻿using Soccer.Web.Models.Entities;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,16 +28,16 @@ namespace Soccer.Web.DataAccess.Data.Inicializador
         {
             if (!dbContext.Tournaments.Any())
             {
-                DateTime startDate = DateTime.Today.AddMonths(2).ToUniversalTime();
-                DateTime endDate = DateTime.Today.AddMonths(3).ToUniversalTime();
+                DateTime startDate = DateTime.Today.AddMonths(13).AddDays(8).ToUniversalTime(); //12/6/2021
+                DateTime endDate = DateTime.Today.AddMonths(14).AddDays(7).ToUniversalTime();  //11-7-2021
 
                 dbContext.Tournaments.Add(new TournamentEntity
                 {
                     StartDate = startDate,
                     EndDate = endDate,
-                    IsActive = true,
-                    LogoPath = $"~/images/Tournaments/Copa America 2020.png",
-                    Name = "Copa America 2020",
+                    IsActive = false,
+                    LogoPath = $"~/images/Tournaments/Copa America 2021.png",
+                    Name = "Copa America 2021",
                     Groups = new List<GroupEntity>
                     {
                         new GroupEntity
@@ -46,48 +45,119 @@ namespace Soccer.Web.DataAccess.Data.Inicializador
                              Name = "A",
                              GroupDetails = new List<GroupDetailEntity>
                              {
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Colombia") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Ecuador") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Panama") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Canada") }
+                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Argentina") },
+                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Australia") },
+                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Bolivia") },
+                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Uruguay") },
+                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Chile") },
+                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Paraguay") }
                              },
                              Matches = new List<MatchEntity>
                              {
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Colombia"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Ecuador")
+                                     Date = startDate.AddHours(20),   //12-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Argentina"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Chile"),
+                                     NumberMatch = 1
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Panama"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Canada")
+                                     Date = startDate.AddDays(1).AddHours(16), //13-6-2021 16:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Australia"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Uruguay"),
+                                     NumberMatch = 2
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(4).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Colombia"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Panama")
+                                     Date = startDate.AddDays(1).AddHours(19), //13-6-2021 19:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Paraguay"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Bolivia"),
+                                     NumberMatch = 3
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(4).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Ecuador"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Canada")
+                                     Date = startDate.AddDays(4).AddHours(19), //16-6-2021 19:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Chile"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Bolivia"),
+                                     NumberMatch = 7
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(9).AddHours(16),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Canada"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Colombia")
+                                     Date = startDate.AddDays(5).AddHours(22), //17-6-2021 22:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Argentina"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Uruguay"),
+                                     NumberMatch = 8                                  
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(9).AddHours(16),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Ecuador"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Panama")
+                                     Date = startDate.AddDays(5).AddHours(19), //17-6-2021 19:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Paraguay"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Australia"),
+                                     NumberMatch = 9
+                                 },  
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(8).AddHours(20), //20-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Argentina"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Paraguay"),
+                                     NumberMatch = 13
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(9).AddHours(19), //21-6-2021 19:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Uruguay"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Chile"),
+                                     NumberMatch = 14
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(10).AddHours(19), //22-6-2021 19:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Australia"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Bolivia"),
+                                     NumberMatch = 16
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(13).AddHours(20),//25-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Chile"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Paraguay"),
+                                     NumberMatch = 19
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(14).AddHours(19), //26-6-2021 19:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Bolivia"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Uruguay"),
+                                     NumberMatch = 20
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(14).AddHours(22), //26-6-2021 22:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Australia"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Argentina"),
+                                     NumberMatch = 21
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(18).AddHours(20), //30-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Chile"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Australia"),
+                                     NumberMatch = 25
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(18).AddHours(20), //30-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Bolivia"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Argentina"),
+                                     NumberMatch = 26
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(16).AddHours(20), //30-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Uruguay"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Paraguay"),
+                                     NumberMatch = 27
                                  }
                              }
                         },
@@ -96,446 +166,121 @@ namespace Soccer.Web.DataAccess.Data.Inicializador
                              Name = "B",
                              GroupDetails = new List<GroupDetailEntity>
                              {
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Argentina") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Paraguay") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Mexico") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Chile") }
-                             },
-                             Matches = new List<MatchEntity>
-                             {
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(1).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Argentina"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Paraguay")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(1).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Mexico"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Chile")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(5).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Argentina"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Mexico")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(5).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Paraguay"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Chile")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(10).AddHours(16),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Chile"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Argentina")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(10).AddHours(16),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Paraguay"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Mexico")
-                                 }
-                             }
-                        },
-                        new GroupEntity
-                        {
-                             Name = "C",
-                             GroupDetails = new List<GroupDetailEntity>
-                             {
+                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Colombia") },
                                  new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Brasil") },
+                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Qatar") },
                                  new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Venezuela") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "USA") },
+                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Ecuador") },
                                  new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Peru") }
                              },
                              Matches = new List<MatchEntity>
                              {
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(2).AddHours(14),
+                                    Date = startDate.AddDays(1).AddHours(20), //13-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Colombia"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Ecuador"),
+                                     NumberMatch = 4
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(2).AddHours(17), //14-6-2021 17:00 pm
                                      Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Brasil"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Venezuela")
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Venezuela"),
+                                     NumberMatch = 5
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(2).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "USA"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Peru")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(6).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Brasil"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "USA")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(6).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Venezuela"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Peru")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(11).AddHours(16),
+                                     Date = startDate.AddDays(2).AddHours(20), //14-6-2021 20:00 pm
                                      Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Peru"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Brasil")
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Qatar"),
+                                     NumberMatch = 6
+                                     
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(11).AddHours(16),
+                                     Date = startDate.AddDays(5).AddHours(20), //17-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Colombia"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Venezuela"),
+                                     NumberMatch = 10
+                                     
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(6).AddHours(17), //18-6-2021 17:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Ecuador"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Qatar"),
+                                     NumberMatch = 11
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(6).AddHours(20), //18-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Peru"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Brasil"),
+                                     NumberMatch = 12
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(9).AddHours(20), //21-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Colombia"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Peru"),
+                                     NumberMatch = 15
+                                 },
+                                 new MatchEntity
+                                 {
+                                     Date = startDate.AddDays(10).AddHours(20), //22-6-2021 20:00 pm
                                      Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Venezuela"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "USA")
-                                 }
-                             }
-                        },
-                        new GroupEntity
-                        {
-                             Name = "D",
-                             GroupDetails = new List<GroupDetailEntity>
-                             {
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Uruguay") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Bolivia") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Costa Rica") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Honduras") }
-                             },
-                             Matches = new List<MatchEntity>
-                             {
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(3).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Uruguay"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Bolivia")
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Ecuador"),
+                                     NumberMatch = 17
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(3).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Costa Rica"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Honduras")
+                                    Date = startDate.AddDays(10).AddHours(18), //22-6-2021 18:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Brasil"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Qatar"),
+                                     NumberMatch = 18
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(7).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Uruguay"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Costa Rica")
+                                     Date = startDate.AddDays(15).AddHours(17), //27-6-2021 17:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Ecuador"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Peru"),
+                                     NumberMatch = 22
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(7).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Bolivia"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Honduras")
+                                     Date = startDate.AddDays(15).AddHours(20), //27-6-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Brasil"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Colombia"),
+                                     NumberMatch = 23
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(12).AddHours(16),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Honduras"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Uruguay")
+                                     Date = startDate.AddDays(15).AddHours(16), //27-6-2021 16:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Qatar"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Venezuela"),
+                                     NumberMatch = 24
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(12).AddHours(16),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Bolivia"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Costa Rica")
-                                 }
-                             }
-                        }
-                    }
-                });
-
-                startDate = DateTime.Today.AddMonths(1).ToUniversalTime();
-                endDate = DateTime.Today.AddMonths(4).ToUniversalTime();
-
-                dbContext.Tournaments.Add(new TournamentEntity
-                {
-                    StartDate = startDate,
-                    EndDate = endDate,
-                    IsActive = true,
-                    LogoPath = $"~/images/Tournaments/Liga Aguila 2020-I.png",
-                    Name = "Liga Aguila 2020-I",
-                    Groups = new List<GroupEntity>
-                    {
-                        new GroupEntity
-                        {
-                             Name = "A",
-                             GroupDetails = new List<GroupDetailEntity>
-                             {
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "America") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Bucaramanga") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Junior") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Medellin") }
-                             },
-                             Matches = new List<MatchEntity>
-                             {
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "America"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Bucaramanga")
+                                     Date = startDate.AddDays(19).AddHours(20), //1-7-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Qatar"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Colombia"),
+                                     NumberMatch = 28
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Junior"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Medellin")
+                                     Date = startDate.AddDays(19).AddHours(20), //1-7-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Ecuador"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Brasil"),
+                                     NumberMatch = 29
                                  },
                                  new MatchEntity
                                  {
-                                     Date = startDate.AddDays(4).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "America"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Junior")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(4).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Bucaramanga"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Medellin")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(9).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Medellin"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "America")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(9).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Bucaramanga"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Junior")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(15).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Bucaramanga"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "America")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(15).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Medellin"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Junior")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(19).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Junior"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "America")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(19).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Medellin"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Bucaramanga")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(19).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "America"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Medellin")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(19).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Junior"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Bucaramanga")
-                                 }
-                             }
-                        },
-                        new GroupEntity
-                        {
-                             Name = "B",
-                             GroupDetails = new List<GroupDetailEntity>
-                             {
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Millonarios") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Nacional") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Once Caldas") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Santa Fe") }
-                             },
-                             Matches = new List<MatchEntity>
-                             {
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(1).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Millonarios"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Nacional")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(1).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Once Caldas"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Santa Fe")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(5).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Millonarios"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Once Caldas")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(5).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Nacional"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Santa Fe")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(10).AddHours(16),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Santa Fe"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Millonarios")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(10).AddHours(16),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Nacional"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Once Caldas")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(16).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Nacional"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Millonarios")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(16).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Santa Fe"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Once Caldas")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(20).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Once Caldas"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Millonarios")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(20).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Santa Fe"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Nacional")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(35).AddHours(16),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Millonarios"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Santa Fe")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(35).AddHours(16),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Once Caldas"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Nacional")
-                                 }
-                             }
-                        }
-                    }
-                });
-
-                startDate = DateTime.Today.AddMonths(1).ToUniversalTime();
-                endDate = DateTime.Today.AddMonths(2).ToUniversalTime();
-
-                dbContext.Tournaments.Add(new TournamentEntity
-                {
-                    StartDate = startDate,
-                    EndDate = endDate,
-                    IsActive = true,
-                    LogoPath = $"~/images/Tournaments/Champions.jpg",
-                    Name = "Champions 2020",
-                    Groups = new List<GroupEntity>
-                    {
-                        new GroupEntity
-                        {
-                             Name = "A",
-                             GroupDetails = new List<GroupDetailEntity>
-                             {
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Ajax") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Barcelona") }
-                             },
-                             Matches = new List<MatchEntity>
-                             {
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Ajax"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Barcelona")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Barcelona"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Ajax")
-                                 }
-                             }
-                        },
-                        new GroupEntity
-                        {
-                             Name = "B",
-                             GroupDetails = new List<GroupDetailEntity>
-                             {
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Bayer Leverkusen") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Chelsea") }
-                             },
-                             Matches = new List<MatchEntity>
-                             {
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(1).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Bayer Leverkusen"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Chelsea")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(1).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Chelsea"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Bayer Leverkusen")
-                                 }
-                             }
-                        },
-                        new GroupEntity
-                        {
-                             Name = "C",
-                             GroupDetails = new List<GroupDetailEntity>
-                             {
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Borussia Dortmund") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Inter Milan") }
-                             },
-                             Matches = new List<MatchEntity>
-                             {
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(1).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Borussia Dortmund"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Inter Milan")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(1).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Inter Milan"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Borussia Dortmund")
-                                 }
-                             }
-                        },
-                        new GroupEntity
-                        {
-                             Name = "D",
-                             GroupDetails = new List<GroupDetailEntity>
-                             {
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "PSG") },
-                                 new GroupDetailEntity { Team = dbContext.Teams.FirstOrDefault(t => t.Name == "Real Madrid") }
-                             },
-                             Matches = new List<MatchEntity>
-                             {
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(1).AddHours(14),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "PSG"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Real Madrid")
-                                 },
-                                 new MatchEntity
-                                 {
-                                     Date = startDate.AddDays(1).AddHours(17),
-                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Real Madrid"),
-                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "PSG")
+                                     Date = startDate.AddDays(19).AddHours(20), //1-7-2021 20:00 pm
+                                     Local = dbContext.Teams.FirstOrDefault(t => t.Name == "Venezuela"),
+                                     Visitor = dbContext.Teams.FirstOrDefault(t => t.Name == "Peru"),
+                                     NumberMatch = 30
                                  }
                              }
                         }
@@ -550,40 +295,22 @@ namespace Soccer.Web.DataAccess.Data.Inicializador
         {
             if (!dbContext.Teams.Any())
             {
-                await AddTeamAsync("Ajax");
-                await AddTeamAsync("America");
+                //Grupo A
                 await AddTeamAsync("Argentina");
-                await AddTeamAsync("Barcelona");
-                await AddTeamAsync("Bayer Leverkusen");
+                await AddTeamAsync("Australia");
                 await AddTeamAsync("Bolivia");
-                await AddTeamAsync("Borussia Dortmund");
-                await AddTeamAsync("Brasil");
-                await AddTeamAsync("Bucaramanga");
-                await AddTeamAsync("Canada");
-                await AddTeamAsync("Chelsea");
-                await AddTeamAsync("Chile");
-                await AddTeamAsync("Colombia");
-                await AddTeamAsync("Costa Rica");
-                await AddTeamAsync("Ecuador");
-                await AddTeamAsync("Honduras");
-                await AddTeamAsync("Inter Milan");
-                await AddTeamAsync("Junior");
-                await AddTeamAsync("Juventus");
-                await AddTeamAsync("Liverpool");
-                await AddTeamAsync("Medellin");
-                await AddTeamAsync("Mexico");
-                await AddTeamAsync("Millonarios");
-                await AddTeamAsync("Nacional");
-                await AddTeamAsync("Once Caldas");
-                await AddTeamAsync("Panama");
-                await AddTeamAsync("Paraguay");
-                await AddTeamAsync("Peru");
-                await AddTeamAsync("PSG");
-                await AddTeamAsync("Real Madrid");
-                await AddTeamAsync("Santa Fe");
                 await AddTeamAsync("Uruguay");
-                await AddTeamAsync("USA");
+                await AddTeamAsync("Chile");
+                await AddTeamAsync("Paraguay");
+
+                //Grupo B
+                await AddTeamAsync("Colombia");
+                await AddTeamAsync("Brasil");
+                await AddTeamAsync("Qatar");
                 await AddTeamAsync("Venezuela");
+                await AddTeamAsync("Ecuador");
+                await AddTeamAsync("Peru");
+
                 await dbContext.SaveChangesAsync();
             }
         }
