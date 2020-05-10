@@ -36,8 +36,10 @@ namespace Soccer.Web.Models.Entities
 
         public ICollection<PredictionEntity> Predictions { get; set; }
 
+        [Display(Name = "User")]
         public string FullName => $"{FirstName} {LastName}";
 
+        [Display(Name = "User")]
         public string FullNameWithDocument => $"{FirstName} {LastName} - {Document}";
     }
 }

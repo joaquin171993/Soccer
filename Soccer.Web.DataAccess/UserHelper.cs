@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Soccer.Web.DataAccess.Data.Helpers;
 using Soccer.Web.Models.Entities;
+using Soccer.Web.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,11 +62,11 @@ namespace Soccer.Web.DataAccess
             return await this.userManager.IsInRoleAsync(user, roleName);
         }
 
-        //public async Task<SignInResult> LoginAsync(LoginViewModel loginViewModel)
-        //{
-        //    /*en este caso el parametro false significa que no nay bloqueo en caso de equivocarse al digitar mal varias veces el password o usuario*/
-        //    return await this.signInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, loginViewModel.RememberMe, false);
-        //}
+        public async Task<SignInResult> LoginAsync(LoginViewModel loginViewModel)
+        {
+            /*en este caso el parametro false significa que no nay bloqueo en caso de equivocarse al digitar mal varias veces el password o usuario*/
+            return await this.signInManager.PasswordSignInAsync(loginViewModel.Username, loginViewModel.Password, loginViewModel.RememberMe, false);
+        }
 
         public async Task LogoutAsync()
         {

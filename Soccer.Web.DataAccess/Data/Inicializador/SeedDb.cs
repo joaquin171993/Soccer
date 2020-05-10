@@ -1,4 +1,7 @@
-﻿using Soccer.Web.Models.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Soccer.Web.DataAccess.Data.Repository;
+using Soccer.Web.Models.Entities;
+using Soccer.Web.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +13,101 @@ namespace Soccer.Web.DataAccess.Data.Inicializador
     {
 
         private readonly ApplicationDbContext dbContext;
+        private readonly IContenedorTrabajo contenedorTrabajo;
+        private readonly Random _random;
 
-        public SeedDb(ApplicationDbContext dbContext)
+        public SeedDb(ApplicationDbContext dbContext, IContenedorTrabajo contenedorTrabajo)
         {
             this.dbContext = dbContext;
+            this.contenedorTrabajo = contenedorTrabajo;
+            _random = new Random();
         }
 
         public async Task SeedAsync()
         {
             await dbContext.Database.EnsureCreatedAsync();
+            await CheckRolesAsync();
             await CheckTeamsAsync();
             await CheckTournamentsAsync();
+            await CheckUserAsync("207080606", "Joaquín", "Salas", "joasmol.17@gmail.com", "+506 61091434", "San Ramón", UserType.Admin, "");
+            await CheckUserAsync("207080606", "Joaquín", "Salas", "joaquinsalas-1993@hotmail.com", "+506 61091434", "San Ramón", UserType.Admin, "");
+            await CheckUserAsync("207080606", "Joaquín", "Salas", "josejoaquin.salas@uned.cr", "+506 61091434", "San Ramón", UserType.User, "");
+            await CheckUserAsync("207080606", "Joaquín", "Salas", "jsalasm@naglo-cr.com", "+506 61091434", "San Ramón", UserType.User, "");
+            await CheckPreditionsAsync();
+        }
 
+        private async Task CheckPreditionsAsync()
+        {
+            if (!dbContext.Predictions.Any())
+            {
+                foreach (ApplicationUser user in dbContext.Users)
+                {
+                    if (user.UserType == UserType.User)
+                    {
+                        AddPrediction(user);
+                    }
+                }
+
+                await dbContext.SaveChangesAsync();
+            }
+        }
+
+        private void AddPrediction(ApplicationUser user)
+        {
+            foreach (MatchEntity match in dbContext.Matches)
+            {
+                dbContext.Predictions.Add(new PredictionEntity
+                {
+                    GoalsLocal = _random.Next(0, 5),
+                    GoalsVisitor = _random.Next(0, 5),
+                    Match = match,
+                    User = user
+                });
+            }
+        }
+
+        private async Task<ApplicationUser> CheckUserAsync(
+            string document,
+            string firstName,
+            string lastName,
+            string email,
+            string phone,
+            string address,
+            UserType userType,
+            string image)
+        {
+            ApplicationUser user = await contenedorTrabajo.Usuario.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+
+                user = new ApplicationUser
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    UserName = email,
+                    PhoneNumber = phone,
+                    Address = address,
+                    Document = document,
+                    Team = await dbContext.Teams.FirstOrDefaultAsync(),
+                    UserType = userType
+                };
+
+                await contenedorTrabajo.Usuario.AddUserAsync(user, "123456");
+                await contenedorTrabajo.Usuario.AddRoleToUserAsync(user, userType.ToString());
+
+                string token = await contenedorTrabajo.Usuario.GenerateEmailConfirmationTokenAsync(user);
+                await contenedorTrabajo.Usuario.ConfirmEmailAsync(user, token);
+            }
+
+            return user;
+        }
+
+
+        private async Task CheckRolesAsync()
+        {
+            await contenedorTrabajo.Usuario.CheckRoleAsync(UserType.Admin.ToString());
+            await contenedorTrabajo.Usuario.CheckRoleAsync(UserType.User.ToString());
         }
 
         private async Task CheckTournamentsAsync()

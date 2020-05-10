@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Soccer.Web.Models.Entities;
+using Soccer.Web.Models.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace Soccer.Web.DataAccess.Data.Helpers
         Task<IdentityResult> AddUserAsync(ApplicationUser user, string password); /*devuelve un IdentityResult, que permite indicar el porque se pudo o no realizar 
         el agregado del usuario*/
 
-        //Task<SignInResult> LoginAsync(LoginViewModel loginViewModel);
+        Task<SignInResult> LoginAsync(LoginViewModel loginViewModel);
 
         Task LogoutAsync();
 
