@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Soccer.Web.DataAccess.Data.Repository;
 using Soccer.Web.Models.Entities;
 using Soccer.Web.Models.ViewModels;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 namespace Soccer.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class TournamentsController : Controller
     {
         private readonly IContenedorTrabajo contenedorTrabajo;

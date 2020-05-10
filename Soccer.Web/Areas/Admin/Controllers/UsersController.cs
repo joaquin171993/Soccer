@@ -57,5 +57,13 @@ namespace Soccer.Web.Areas.Admin.Controllers
             return this.View(model);
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await contenedorTrabajo.Usuario.LogoutAsync();
+            return RedirectToAction("Index", "Home", new { area = "Cliente" });
+
+            //Fuente:https://www.iteramos.com/pregunta/22138/redirecttoaction-entre-las-areas
+        }
+
     }
 }
