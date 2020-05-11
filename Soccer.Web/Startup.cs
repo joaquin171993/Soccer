@@ -67,7 +67,7 @@ namespace Soccer.Web
                 });
 
             services.AddScoped<IContenedorTrabajo, ContenedorTrabajo>();  /*Inyector de dependencias*/
-            services.AddTransient<SeedDb>();
+            //services.AddTransient<SeedDb>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }

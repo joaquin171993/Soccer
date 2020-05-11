@@ -7,6 +7,7 @@ namespace Soccer.Web.DataAccess.Data.Repository
     public interface ITournamentRepository : IRepository<TournamentEntity>
     {
         Task<IEnumerable<TournamentEntity>> GetTournaments();
+        Task<IEnumerable<TournamentEntity>> GetTournamentsAPI();
         Task<TournamentEntity> GetTournamentDetails(int id);
         void Update(TournamentEntity teamEntity);
         void Add(GroupEntity groupEntity);

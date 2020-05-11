@@ -8,5 +8,9 @@ namespace Soccer.Web.DataAccess.Data.Repository
         IEnumerable<TeamEntity> GetTeams();
 
         void Update(TeamEntity teamEntity);
+
+        void Update(TeamEntity teamEntity, int id);
+
+        bool TeamEntityExist(int id);
     }
 }

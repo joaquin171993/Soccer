@@ -38,6 +38,21 @@ namespace Soccer.Web.DataAccess
             return await dbContext.Tournaments.ToListAsync();
         }
 
+        public async Task<IEnumerable<TournamentEntity>> GetTournamentsAPI()
+        {
+            return await dbContext.Tournaments
+                .Include(t => t.Groups)
+                .ThenInclude(g => g.GroupDetails)
+                .ThenInclude(t => t.Team)
+                .Include(g => g.Groups)
+                .ThenInclude(m => m.Matches)
+                .ThenInclude(l => l.Local)
+                .Include(g => g.Groups)
+                .ThenInclude(m => m.Matches)
+                .ThenInclude(l => l.Visitor)
+                .ToListAsync();
+        }
+
         public void Update(TournamentEntity tournamentEntity)
         {
             if (tournamentEntity != null)

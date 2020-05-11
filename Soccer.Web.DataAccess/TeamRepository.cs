@@ -17,7 +17,7 @@ namespace Soccer.Web.DataAccess
 
         public IEnumerable<TeamEntity> GetTeams()
         {
-            return dbContext.Teams.ToList();
+            return dbContext.Teams.ToList().OrderBy(t => t.Name);
         }
 
         public void Update(TeamEntity teamEntity)
@@ -31,5 +31,23 @@ namespace Soccer.Web.DataAccess
 
             }
         }
+
+        public void Update(TeamEntity teamEntity, int id)
+        {
+            if (teamEntity != null)
+            {
+                var objDesdeBd = dbContext.Teams.FirstOrDefault(a => a.Id == id);
+
+                objDesdeBd.Name = teamEntity.Name;
+                objDesdeBd.LogoPath = teamEntity.LogoPath;
+
+            }
+        }
+
+        public bool TeamEntityExist(int id)
+        {
+            return dbContext.Teams.Any(a => a.Id == id);
+        }
+
     }
 }
